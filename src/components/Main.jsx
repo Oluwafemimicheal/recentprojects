@@ -7,11 +7,11 @@ const Main = () => {
       <div className="w-3/12">
         <Card>
           <h2 className="font-semibold mb-4">
-            Numbers of Soul onboard are <span className="px-2 bg-green-800 text-white font-bold rounded-md">{SoulData.length}</span>
+            Numbers of Soul onboard are <span className="px-2 bg-green-600 text-white font-bold rounded-md text-[13px]">{SoulData.length}</span>
           </h2>
           <NavLink
             to={"/all-soul"}
-            className="bg-green-500 rounded-md px-4 py-2 w-[max-content] font-semibold"
+            className="bg-green-500 rounded-md px-4 py-1 w-[max-content] font-semibold"
           >
             View List
           </NavLink>

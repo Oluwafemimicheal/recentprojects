@@ -13,7 +13,7 @@ const Navbar = () => {
         </NavLink>
       <div className="flex justify-between items-center gap-5 w-6/12 m-auto">
         <NavLink to={"/all-soul"} className={activeNav}>
-          View Souls
+          View Souls List
         </NavLink>
         <NavLink to={"/recent-soul"} className={activeNav}>
           Recent Soul
