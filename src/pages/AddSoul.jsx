@@ -2,7 +2,7 @@ import React from 'react'
 
 const AddSoul = () => {
     return (
-        <div>
+        <div className="w-10/12 p-5 bg-gray-100">
             AddSoul
         </div>
     )
