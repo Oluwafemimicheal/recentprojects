@@ -1,11 +1,12 @@
-import React from 'react'
-
+import Table from "../components/Table";
 const RecentSoul = () => {
-    return (
-        <div className="w-10/12 p-5 bg-gray-100 mt-16">
-            RecentSoul
-        </div>
-    )
-}
+  return (
+    <div className="w-10/12 p-5 bg-gray-100">
+      <div className="pt-4 m-auto">
+        <Table isAll={true} />
+      </div>
+    </div>
+  );
+};
 
-export default RecentSoul
+export default RecentSoul;

@@ -3,7 +3,10 @@ import SoulData from "../db/Soul";
 import { NavLink } from "react-router-dom";
 import { FaLongArrowAltLeft} from "react-icons/fa";
 import BackToTop from "./BackToTop";
-const Table = () => {
+const Table = ({isAll = true}) => {
+
+  let soulData = isAll? SoulData.slice(0,5) : SoulData
+
   return (
     <>
       <table className="c-table mt-20" id={`${top}`}>
@@ -16,7 +19,7 @@ const Table = () => {
               <FaLongArrowAltLeft />
               <span className="text-[14px]">back to homepage</span>
             </NavLink>
-            Soul Attendance Table
+            {isAll? "Recent Souls List" : "All Souls List"}
           </div>
         </caption>
         <thead>
@@ -32,7 +35,7 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>
-          {SoulData.map((soul) => {
+          {soulData.map((soul) => {
             return (
               <SoulList
                 key={soul.id}
