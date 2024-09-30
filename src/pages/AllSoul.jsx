@@ -1,11 +1,11 @@
-import React from 'react'
+import Main from "../components/Main";
 
 const AllSoul = () => {
-    return (
-        <div>
-            AllSoul 
-        </div>
-    )
-}
+  return (
+    <>
+      All soul
+    </>
+  );
+};
 
-export default AllSoul
+export default AllSoul;
