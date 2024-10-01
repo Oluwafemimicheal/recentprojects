@@ -1,11 +1,32 @@
 import SoulList from "./SoulList";
-import SoulData from "../db/Soul";
+import Spinner from "./Spinner";
 import { NavLink } from "react-router-dom";
-import { FaLongArrowAltLeft} from "react-icons/fa";
+import { FaLongArrowAltLeft } from "react-icons/fa";
 import BackToTop from "./BackToTop";
-const Table = ({isAll = true}) => {
+import { useEffect, useState } from "react";
 
-  let soulData = isAll? SoulData.slice(0,5) : SoulData
+const Table = ({ isAll = true, backToTop=true }) => {
+  const [soul, setSoul] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://localhost:8000/soul");
+        const data = await response.json();
+        setSoul(data);
+      } catch (error) {
+        console.error(
+          "Some functionality went wrong, Please try again!",
+          error
+        );
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <>
@@ -19,7 +40,7 @@ const Table = ({isAll = true}) => {
               <FaLongArrowAltLeft />
               <span className="text-[14px]">back to homepage</span>
             </NavLink>
-            {isAll? "Recent Souls List" : "All Souls List"}
+            {isAll ? "Recent Souls List" : "All Souls List"}
           </div>
         </caption>
         <thead>
@@ -34,25 +55,35 @@ const Table = ({isAll = true}) => {
             <th>Response</th>
           </tr>
         </thead>
+
         <tbody>
-          {soulData.map((soul) => {
-            return (
-              <SoulList
-                key={soul.id}
-                SoulName={soul.Name}
-                SoulNumber={soul.PhoneNumber}
-                SoulLocation={soul.SoulLocation}
-                SoulStatus={soul.Status}
-                MeetBy={soul.SoulDate}
-                SoulFirstMeetingDayDate={soul.SaveBy}
-                SoulFollowUp={soul.FollowUp}
-                SoulResponse={soul.SoulResponse}
-              />
-            );
-          })}
+          {loading ? (
+            <Spinner loading={loading} />
+          ) : (
+            <>
+              {soul.map((soul) => {
+                return (
+                  <SoulList
+                    key={soul.id}
+                    SoulName={soul.name}
+                    SoulNumber={soul.phone}
+                    SoulLocation={soul.address}
+                    SoulStatus={soul.Status}
+                    MeetBy={soul.SoulDate}
+                    SoulFirstMeetingDayDate={soul.SaveBy}
+                    SoulFollowUp={soul.FollowUp}
+                    SoulResponse={soul.SoulResponse}
+                  />
+                );
+              })}
+            </>
+          )}
         </tbody>
       </table>
-      <BackToTop top={top}/>
+      {
+        backToTop && soul.length > 10 ? <BackToTop top={top} /> : null
+      }
+      
     </>
   );
 };
