@@ -1,2 +1,2 @@
-# HTC-Community-
-This is a community project for HTC that is currently under development.
+# Evangelism Data App
+This Application is currently under development!
