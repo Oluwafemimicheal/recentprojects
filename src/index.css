@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.dream {
+  background: url("./assets/interior1.jpg") no-repeat;
+  background-size: cover;
+}
